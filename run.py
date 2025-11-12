@@ -1,2 +1,2 @@
-from app import run
+from main import run
 run()
