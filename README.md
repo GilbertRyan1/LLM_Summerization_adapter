@@ -64,6 +64,6 @@ requirements.txt
    
    from main import run
    run()
-
+---
 ##  Run the app Google colab
 will load, summarization, logs and print the summary and create llm_run_report.txt.
