@@ -68,4 +68,4 @@ requirements.txt**
    run()
 
 ##  Final output
-will load, summarization, logs and print the summary and create llm_run_report.txt.
+will load, perform logs and print the summary and create llm_run_report.txt.
