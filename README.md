@@ -57,8 +57,8 @@ facts.json
 requirements.txt
 
 2. install
-```
-   !pip install -r requirements.txt
+     ```bash
+     !pip install -r requirements.txt
 
 3. run
     !python run.py            or
