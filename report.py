@@ -1,28 +1,7 @@
+# report.py
 import datetime
 from mlflow.tracking import MlflowClient
 from mlflow.artifacts import load_text
-
-def build_llm_messages(query: str, facts: list):
-    blocks = []
-    for item in facts:
-        topic = item.get("Topic", "N/A")
-        content = item.get("Content", "N/A")
-        blocks.append(f"[topic: {topic}]\n{content}")
-    doc_block = "\n\n---\n\n".join(blocks)
-
-    prompt = (
-        "You summarize technical content.\n\n"
-        f"User query:\n{query}\n\n"
-        "Facts:\n"
-        f"{doc_block}\n\n"
-        "Write one short paragraph that answers the query. "
-        "Do not add extra knowledge, headings, or lists."
-    ).strip()
-
-    return [
-        {"role": "system", "content": "Summarize technical content for the user."},
-        {"role": "user", "content": prompt},
-    ]
 
 
 def _ts_to_str(timestamp_ms):
@@ -32,7 +11,7 @@ def _ts_to_str(timestamp_ms):
     return "N/A"
 
 
-def create_text_log_report(experiment_name: str, output_filename: str):
+def create_text_log_report(experiment_name: str, output_filename: str = "llm_run_report.txt"):
     client = MlflowClient()
 
     try:
@@ -57,6 +36,7 @@ def create_text_log_report(experiment_name: str, output_filename: str):
         metrics = run.data.metrics
         params = run.data.params
 
+        # load text artifacts
         system_txt = load_text(base + "system_prompt.txt")
         user_txt = load_text(base + "user_prompt.txt")
         out_txt = load_text(base + "assistant_response.txt")
@@ -94,16 +74,16 @@ total cost:    {total_cost}
             experiment_id=run.info.experiment_id,
             status=run.info.status,
             artifact_uri=run.info.artifact_uri,
-            model_name=params.get("model_name", "N/A"),
-            temperature=params.get("temperature", "N/A"),
             start_time=_ts_to_str(run.info.start_time),
-            total_tokens=metrics.get("total_tokens", 0),
+            model_name=params.get("model", "N/A"),
+            temperature=params.get("temperature", "N/A"),
+            query=params.get("query", "N/A"),
+            total_tokens=metrics.get("input_tokens", 0) + metrics.get("output_tokens", 0),
             input_tokens=metrics.get("input_tokens", 0),
             output_tokens=metrics.get("output_tokens", 0),
             input_cost=f"${metrics.get('input_cost_usd', 0):.6f}",
             output_cost=f"${metrics.get('output_cost_usd', 0):.6f}",
             total_cost=f"${metrics.get('total_cost_usd', 0):.6f}",
-            query=params.get("query", "N/A"),
             system_txt=system_txt,
             user_txt=user_txt,
             out_txt=out_txt,
@@ -113,5 +93,6 @@ total cost:    {total_cost}
             f.write(report.strip())
 
         print(f"report saved: {output_filename}")
+
     except Exception as e:
         print(f"error while creating report: {e}")
