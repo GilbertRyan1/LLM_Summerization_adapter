@@ -11,7 +11,7 @@ llm_adapter_project/
 │
 ├── llm_adapter.py # llm interface + gemini adapter
 ├── pipeline.py # summarization pipeline class
-├── utils.py # helpers: build prompt + write report
+├── report.py # helpers: build prompt + write report
 │
 ├── facts.json # sample data for summarization
 ├── requirements.txt # minimal dependencies
