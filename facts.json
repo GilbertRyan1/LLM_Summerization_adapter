@@ -1,0 +1,7 @@
+[
+  { "Topic": "LLM Basics", "Content": "LLMs are deep models trained on large text to handle language tasks." },
+  { "Topic": "Transformer", "Content": "Self-attention replaces RNNs and is core to modern LLMs." },
+  { "Topic": "Risks", "Content": "Deepfakes, copyright, bias, privacy, and job displacement." },
+  { "Topic": "RAG", "Content": "Retrieve facts from external sources to reduce hallucination." },
+  { "Topic": "Ethics", "Content": "Fairness, transparency, privacy protections." }
+]
