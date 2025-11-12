@@ -41,14 +41,14 @@ the layout follows simple separation of concerns:
 
 1. install dependencies  
    ```bash
-   pip install -r requirements.txt
+   !pip install -r requirements.txt
 
 ## set your key, choose the model
 export GEMINI_API_KEY="your_key"
 export GEMINI_MODEL_NAME="gemini-2.5-flash"  # create a new one or existing one by setting up "secret" variable for they key and model. 
 
 ##  Run the app Google colab
-1. upload all these files:
+1. upload all these files manually:
 adapter.py
 service.py
 main.py
@@ -59,7 +59,8 @@ requirements.txt
 2. install !pip install -r requirements.txt
 
 3. run
-   !python run.py            or
+```bash
+    !python run.py            or
    
    from main import run
    run()
