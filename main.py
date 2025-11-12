@@ -1,12 +1,10 @@
-# main.py
 import os
 import json
 from adapter import GeminiAdapter
-from service import Summarizer
-from report import create_text_log_report  # <— add this line
+from service import Summarizer, write_mlflow_text_report
 
 EXPERIMENT = "/ryan/AI_Summarization_Pipeline"
-FACTS_FILE = "facts.json"
+FACTS_FILE = "/content/facts.json"
 QUERY = "Summarize the core technologies and risks of Large Language Models."
 
 def _get_keys():
@@ -42,4 +40,4 @@ def run():
     print("cost (usd):", f"{out['cost_total_usd']:.6f}")
 
     # generate detailed text log
-    create_text_log_report(EXPERIMENT, "llm_run_report.txt")
+    write_mlflow_text_report(EXPERIMENT, "llm_run_report.txt")
