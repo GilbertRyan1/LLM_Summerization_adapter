@@ -17,7 +17,7 @@ llm_adapter_project/
 ├── requirements.txt # minimal dependencies
 └── README.md
 
-
+```
 ---
 
 ## Idea
