@@ -47,7 +47,7 @@ the layout follows simple separation of concerns:
 export GEMINI_API_KEY="your_key"
 export GEMINI_MODEL_NAME="gemini-2.5-flash"  # create a new one or existing one by setting up "secret" variable for they key and model. 
 
-##  Run the app Google colab
+##  Run this on Google colab
 1. upload all these files manually:
 adapter.py
 service.py
@@ -66,5 +66,5 @@ requirements.txt
    from main import run
    run()
 
-##  Run the app Google colab
+##  Final output
 will load, summarization, logs and print the summary and create llm_run_report.txt.
