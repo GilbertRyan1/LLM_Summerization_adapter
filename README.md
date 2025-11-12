@@ -1,6 +1,7 @@
 # LLM_Summerization_adapter
 A small demo project that builds a summary from a list of technical facts using Gemini. it logs input, output, prompts, tokens, cost, and latency ,and model parameters to mlflow and writes a short text report. 
 
+---
 ## Project structure
 llm_adapter_project/
 │
