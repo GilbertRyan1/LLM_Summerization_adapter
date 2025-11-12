@@ -64,5 +64,6 @@ requirements.txt
    
    from main import run
    run()
-   
+```bash
+
 will load, summaru=ization, logs and print the summary and create llm_run_report.txt.
