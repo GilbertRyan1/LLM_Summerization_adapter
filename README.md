@@ -10,8 +10,7 @@ llm_adapter_project/
 ├── run.py # small entry script
 │
 ├── llm_adapter.py # llm interface + gemini adapter
-├── pipeline.py # summarization pipeline class
-├── service.py # helpers: build prompt + write report
+├── service.py # summarization pipeline class. # helpers: build prompt + write report
 │
 ├── facts.json # sample data for summarization
 ├── requirements.txt # minimal dependencies
