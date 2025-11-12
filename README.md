@@ -49,12 +49,12 @@ export GEMINI_MODEL_NAME="gemini-2.5-flash"  # create a new one or existing one 
 
 ##  Run this on Google colab
 1. upload all these files manually:
-adapter.py
+**adapter.py
 service.py
 main.py
 run.py
 facts.json
-requirements.txt
+requirements.txt**
 
 2. install
      ```bash
