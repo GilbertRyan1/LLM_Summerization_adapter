@@ -3,7 +3,8 @@ A small demo project that builds a summary from a list of technical facts using 
 
 ---
 ## Project structure
-```llm_adapter_project/
+```
+llm_adapter_project/
 │
 ├── main.py # main logic
 ├── run.py # small entry script
