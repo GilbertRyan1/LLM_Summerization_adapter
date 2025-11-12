@@ -1,4 +1,6 @@
+# adapter.py
 import time
+from typing import List, Dict, Any
 from google import genai
 from google.genai import types
 
@@ -7,9 +9,11 @@ class GeminiAdapter:
         self.model = model
         self.client = genai.Client(api_key=api_key)
 
-    def complete(self, messages, temperature=0.4):
-        # expected to be user prompt
-        user_text = messages[-1]["content"]
+    def complete(self, messages: List[Dict[str, str]], temperature: float = 0.4) -> Dict[str, Any]:
+        if not messages:
+            return {"text": "no messages", "in_tokens": 0, "out_tokens": 0, "latency": 0.0}
+
+        user_text = messages[-1].get("content", "") or ""
         t0 = time.time()
         try:
             resp = self.client.models.generate_content(
@@ -26,10 +30,13 @@ class GeminiAdapter:
         if not getattr(resp, "text", None):
             return {"text": "blocked or empty", "in_tokens": 0, "out_tokens": 0, "latency": time.time() - t0}
 
-        usage = resp.usage_metadata
+        usage = getattr(resp, "usage_metadata", None)
+        in_t = getattr(usage, "prompt_token_count", 0) if usage else 0
+        out_t = getattr(usage, "candidates_token_count", 0) if usage else 0
+
         return {
             "text": resp.text.strip(),
-            "in_tokens": getattr(usage, "prompt_token_count", 0),
-            "out_tokens": getattr(usage, "candidates_token_count", 0),
+            "in_tokens": in_t,
+            "out_tokens": out_t,
             "latency": time.time() - t0,
         }
