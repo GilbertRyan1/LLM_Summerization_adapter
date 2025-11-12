@@ -61,7 +61,8 @@ requirements.txt
      !pip install -r requirements.txt
 
 3. run
-    !python run.py            or
+   ```bash
+   !python run.py            or
    
    from main import run
    run()
