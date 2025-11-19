@@ -31,7 +31,7 @@ the layout follows simple separation of concerns:
 |-------|------|----------|
 | infrastructure | `llm_adapter.py` | handles model calls |
 | application | `pipeline.py` | runs the summarization flow |
-| helpers | `utils.py` | builds prompts + reports |
+| helpers | `service.py` | builds prompts + reports |
 | interface | `main.py`, `run.py` | entry layer |
 | data | `facts.json` | example input |
 
